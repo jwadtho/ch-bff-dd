@@ -1,12 +1,11 @@
-package com.tootest.ch.user
+package com.tootest.ch.bff
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.web.bind.annotation.GetMapping
 
 @SpringBootApplication
-class UserApplication
+class BffApplication
 
 fun main(args: Array<String>) {
-	runApplication<UserApplication>(*args)
+	runApplication<BffApplication>(*args)
 }
