@@ -14,5 +14,5 @@ spec:
   ports:
   - port: 9300
     protocol: TCP
-    targetPort: 8080
+    targetPort: 9300
   type: LoadBalancer
