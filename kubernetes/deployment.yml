@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-deployment
+  name: bff-deployment
   namespace: {NAMESPACE}
   labels:
-    app: user
+    app: bff
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: bff
   template:
     metadata:
       labels:
-        app: user
+        app: bff
     spec:
       containers:
-      - name: user
-        image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-user:GITHUB_SHA
+      - name: bff
+        image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-bff:GITHUB_SHA
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -26,5 +26,5 @@ spec:
             memory: "64Mi"
             cpu: "250m"
       imagePullSecrets:
-        - name: alibaba-registry-credential-user
+        - name: alibaba-registry-credential-bff
    

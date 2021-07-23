@@ -4,15 +4,15 @@ metadata:
   annotations:
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-id: "lb-uf60e51dfzm6lzye1chhb"
     service.beta.kubernetes.io/alibaba-cloud-loadbalancer-force-override-listeners: "true"
-  name: user-service
+  name: bff-service
   namespace: {NAMESPACE}
   labels:
-    app: user
+    app: bff
 spec:
   selector:
-    app: user
+    app: bff
   ports:
-  - port: 9211
+  - port: 9212
     protocol: TCP
     targetPort: 8080
   type: LoadBalancer
