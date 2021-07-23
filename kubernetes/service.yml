@@ -12,7 +12,7 @@ spec:
   selector:
     app: bff
   ports:
-  - port: 9212
+  - port: 9300
     protocol: TCP
     targetPort: 8080
   type: LoadBalancer
