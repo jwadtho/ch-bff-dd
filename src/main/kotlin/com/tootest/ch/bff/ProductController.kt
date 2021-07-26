@@ -19,11 +19,11 @@ class ProductController {
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
         if (email != null && email != ""){
-            val endpoint = "http://user-service.tootest.svc.cluster.local:9211/user?email=${email}"
+            val endpoint = "http://user-service.tootest.svc.cluster.local:9211/user"
             try {
-                httpGet(
+                val x = httpGet(
                     url = endpoint,
-                    params = mapOf("email" to "testxx@mailtest.com")
+                    params = mapOf("email" to email)
                 )
             } catch (ex: Exception) {
                 logger.error("Could not callout get user, url:$endpoint", ex)
