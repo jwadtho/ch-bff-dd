@@ -12,7 +12,7 @@ env:
   ACR_EE_REGISTRY: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com
   ACR_EE_INSTANCE_ID: cri-3fynibeigjxpi5o6
   ACR_EE_NAMESPACE: tootest
-  ACR_EE_IMAGE: ch-bff`
+  ACR_EE_IMAGE: ch-bff
 
 jobs:
   build:
