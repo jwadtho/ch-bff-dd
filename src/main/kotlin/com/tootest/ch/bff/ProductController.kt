@@ -18,7 +18,7 @@ class ProductController {
         val productInfo =  ProductResponse("Test Product", productCode )
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
-        if (email != null && email.equals("")){
+        if (email != null && email != ""){
             val endpoint = "http://localhost:9211/user?email=${email}"
             try {
                 httpGet(
