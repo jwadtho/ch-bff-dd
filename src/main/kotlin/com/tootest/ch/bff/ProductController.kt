@@ -18,10 +18,10 @@ class ProductController {
         val productInfo =  ProductResponse("Test Product", productCode )
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
-        if (email != null && email == ""){
+        if (email != null && email.equals("")){
             val endpoint = "http://localhost:9211/user?email=${email}"
             try {
-                khttp.get(
+                httpGet(
                     url = endpoint,
                     params = mapOf("email" to "testxx@mailtest.com")
                 )

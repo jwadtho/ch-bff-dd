@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bff-service
+  namespace: {NAMESPACE}
+  labels:
+    app: bff
+spec:
+  selector:
+    app: bff
+  ports:
+    - port: 9300
+      protocol: TCP
+      targetPort: 9300
+  type: LoadBalancer

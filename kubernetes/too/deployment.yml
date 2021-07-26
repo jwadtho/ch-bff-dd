@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-deployment
+  namespace: {NAMESPACE}
+  labels:
+    app: bff
+    "tags.datadoghq.com/env": "tootest"
+    "tags.datadoghq.com/service": "ch-bff"
+    "tags.datadoghq.com/version": "0.1"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bff
+  template:
+    metadata:
+      annotations:
+        ad.datadoghq.com/java.logs: '[{"source":"java","service":"ch-bff"}]'
+      labels:
+        app: bff
+    spec:
+      containers:
+        - name: bff
+          image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-bff:GITHUB_SHA
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9211
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "250m"
+          env:
+            #  Begin Datadog APM
+            - name: DD_AGENT_HOST
+              value: 'datadog-agent-service.tootest.svc.cluster.local'
+            - name: DD_ENV
+              value: 'tootest'
+            - name: DD_SERVICE
+              value: 'ch-bff'
+            - name: DD_VERSION
+              value: '0.1'
+
+            - name: DD_LOGS_INJECTION
+              value: "true"
+
+            - name: DD_TRACE_DEBUG
+              value: "false"
+            #  End Datadog APM
+      imagePullSecrets:
+        - name: alibaba-registry-credential-bff
