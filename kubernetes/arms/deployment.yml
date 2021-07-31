@@ -12,6 +12,9 @@ spec:
       app: bff
   template:
     metadata:
+      annotations:
+        armsPilotAutoEnable: "on"
+        armsPilotCreateAppName: "bff"
       labels:
         app: bff
     spec:
