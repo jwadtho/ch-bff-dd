@@ -1,0 +1,22 @@
+logging:
+  level:
+    com:
+      tootest:
+        ch: DEBUG
+    org:
+      springframework:
+        web: INFO
+    root: INFO
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %X{dd.trace_id} %X{dd.span_id} - %m%n'
+  file:
+    path: /
+    name: ch-bff.log
+
+server:
+  port: 9300
+
+
+ch:
+  user:
+    host: localhost

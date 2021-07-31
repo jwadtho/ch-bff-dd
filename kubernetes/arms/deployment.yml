@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-deployment
+  namespace: {NAMESPACE}
+  labels:
+    app: bff
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bff
+  template:
+    metadata:
+      labels:
+        app: bff
+    spec:
+      containers:
+      - name: bff
+        image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-bff:GITHUB_SHA
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9300
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "250m"
+      imagePullSecrets:
+        - name: alibaba-registry-credential-bff
