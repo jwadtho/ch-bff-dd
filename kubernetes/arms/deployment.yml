@@ -25,5 +25,8 @@ spec:
           requests:
             memory: "1Gi"
             cpu: "250m"
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "k8s"
       imagePullSecrets:
         - name: alibaba-registry-credential-bff
