@@ -14,7 +14,6 @@ logging:
 server:
   port: 9300
 
-
 ch:
   user:
     host: localhost
@@ -22,3 +21,9 @@ opentracing:
   spring:
     web:
       enabled: false
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

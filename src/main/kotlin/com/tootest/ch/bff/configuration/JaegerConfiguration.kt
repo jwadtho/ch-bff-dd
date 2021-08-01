@@ -8,7 +8,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 
-@ConditionalOnProperty(name=["jaeger.enabled"], havingValue="true")
+
+@OnJaeger
 @Configuration(proxyBeanMethods = false)
 class JaegerConfiguration(private val jaegerProperties: JaegerProperties) {
     private val logger = LoggerFactory.getLogger(javaClass)

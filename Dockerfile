@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk-alpine
 
-RUN #wget -O dd-java-agent.jar 'https://dtdg.co/latest-java-tracer'
+#RUN wget -O dd-java-agent.jar 'https://dtdg.co/latest-java-tracer'
 
 COPY build/libs/*SNAPSHOT.jar app.jar
 
