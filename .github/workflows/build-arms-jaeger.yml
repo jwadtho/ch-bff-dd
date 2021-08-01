@@ -34,7 +34,7 @@ jobs:
     - name: Build with Gradle
       uses: eskatos/gradle-command-action@v1
       with:
-        arguments: build -x test
+        arguments: clean build -x test
 
     - name: Build Docker image
       run: docker build -t $ACR_EE_REGISTRY/$ACR_EE_NAMESPACE/$ACR_EE_IMAGE:$VERSION .
