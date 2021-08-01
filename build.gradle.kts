@@ -20,7 +20,12 @@ repositories {
 }
 
 dependencies {
+	// Jaeger
+	implementation ("io.opentracing.contrib:opentracing-spring-cloud-starter:0.5.8")
+	implementation ("io.jaegertracing:jaeger-client:1.4.0")
+	// khttp
 	implementation ("com.github.jkcclemens:khttp:0.1.0")
+	// Spring
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

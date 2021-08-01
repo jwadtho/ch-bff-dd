@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 import khttp.get as httpGet
 
 @RestController
-class ProductController {
+class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = null) {
 
     private val logger = LoggerFactory.getLogger(javaClass)
 
-    @Value("\${ch.user.host}")
-    val chUserHost: String? = null
 
     @GetMapping("/product")
     fun product(@RequestParam productCode: String, @RequestParam(required = false) email: String) : ProductResponse {
