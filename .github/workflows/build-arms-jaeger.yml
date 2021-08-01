@@ -12,7 +12,7 @@ env:
   ACR_EE_INSTANCE_ID: cri-3fynibeigjxpi5o6
   ACR_EE_NAMESPACE: tootest
   ACR_EE_IMAGE: ch-bff
-
+  INTERNAL_PATH: arms-jaeger
 jobs:
   build:
 
@@ -24,7 +24,7 @@ jobs:
       run: |
           GITHUB_SHA="$GITHUB_SHA"
           echo "VERSION=$GITHUB_SHA" >> $GITHUB_ENV
-          sed -i "s/GITHUB_SHA/$GITHUB_SHA/g" ./kubernetes/arms/deployment.yml
+          sed -i "s/GITHUB_SHA/$GITHUB_SHA/g" "./kubernetes/$INTERNAL_PATH/deployment.yml"
     - name: Set up JDK 8
       uses: actions/setup-java@v2
       with:
@@ -69,9 +69,9 @@ jobs:
       run: |
         sed -e "s#{NAMESPACE}#tootest#g" kubernetes/pullImageSecret.yml > kubernetes/pullImageSecret.yaml
 
-        sed -e "s#{NAMESPACE}#tootest#g" kubernetes/arms-jaeger/deployment.yml > kubernetes/arms-jaeger/deployment.yaml
+        sed -e "s#{NAMESPACE}#tootest#g" kubernetes/$INTERNAL_PATH/deployment.yml > kubernetes/$INTERNAL_PATH/deployment.yaml
 
-        sed -e "s#{NAMESPACE}#tootest#g" kubernetes/arms-jaeger/service.yml > kubernetes/arms-jaeger/service.yaml
+        sed -e "s#{NAMESPACE}#tootest#g" kubernetes/$INTERNAL_PATH/service.yml > kubernetes/$INTERNAL_PATH/service.yaml
         
-        kubectl apply -R -f kubernetes/namespace.yml -f kubernetes/pullImageSecret.yaml -f kubernetes/arms-jaeger/deployment.yaml -f kubernetes/arms-jaeger/service.yaml
+        kubectl apply -R -f kubernetes/namespace.yml -f kubernetes/pullImageSecret.yaml -f kubernetes/$INTERNAL_PATH/deployment.yaml -f kubernetes/$INTERNAL_PATH/service.yaml
       
