@@ -1,6 +1,6 @@
 ch:
   user:
-    host: user-service.tootest.svc.cluster.locale
+    host: user-service.tootest.svc.cluster.local
 logging:
   pattern:
     # Adds trace and span IDs to logs (when a trace is in progress)
