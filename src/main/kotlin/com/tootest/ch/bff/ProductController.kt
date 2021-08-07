@@ -15,26 +15,22 @@ class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = nul
 
 
     @GetMapping("/product")
-    fun product(@RequestParam productCode: String, @RequestParam(required = false) email: String) : ProductResponse {
+    fun product(@RequestParam productCode: String, @RequestParam(required = false) email: String): ProductResponse {
         logger.info("[ProductInfo] Retrieving product info: productCode={}, email:{}", productCode, email)
-        val productInfo =  ProductResponse("Test Product", productCode )
+        val productInfo = ProductResponse("Test Product", productCode)
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
-        if (email != ""){
+        if (email != "") {
             val endpoint = "http://${chUserHost}:9211/user"
-            try {
-                 val x  = httpGet(
-                    url = endpoint,
-                    params = mapOf("email" to email)
-                )
-                logger.info("[ProductInfo] Response from User API: statusCode:${x.statusCode}, text: ${x.text}")
-                if (x.statusCode == 200) {
-                    productInfo.backendInfo = "Can connect to backend with email: $email"
-                }
-
-            } catch (ex: Exception) {
-                logger.error("Could not callout get user, url:$endpoint", ex)
-                throw ex
+            val x = httpGet(
+                url = endpoint,
+                params = mapOf("email" to email)
+            )
+            logger.info("[ProductInfo] Response from User API: statusCode:${x.statusCode}, text: ${x.text}")
+            if (x.statusCode == 200) {
+                productInfo.backendInfo = "Can connect to backend with email: $email"
+            } else {
+                throw Exception("Could not callout get user, url:$endpoint")
             }
         }
 
