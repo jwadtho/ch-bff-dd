@@ -21,7 +21,7 @@ class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = nul
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
         if (email != "") {
-            val endpoint = "http://${chUserHost}:9211/ch-bff/user"
+            val endpoint = "http://${chUserHost}:9211/ch-user/user"
             val x = httpGet(
                 url = endpoint,
                 params = mapOf("email" to email)
