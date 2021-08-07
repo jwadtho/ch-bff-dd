@@ -17,12 +17,20 @@ repositories {
 	mavenCentral()
 	maven { url = uri("https://repo.spring.io/release") }
 	maven { url = uri("https://jitpack.io") }
+	maven {
+		url = uri("https://maven.pkg.github.com/exxonmobil/chemit_occ_spring_tracer")
+		credentials {
+			username = System.getenv("MAVEN_USERNAME")
+			password = System.getenv("MAVEN_PASSWORD")
+		}
+	}
 }
 
 dependencies {
+	implementation ("com.xom.chem.china:spring-boot-starter-occ-tracer:4.0.3")
 	// Jaeger
-	implementation ("io.opentracing.contrib:opentracing-spring-cloud-starter:0.5.8")
-	implementation ("io.jaegertracing:jaeger-client:1.4.0")
+	implementation ("io.opentracing.contrib:opentracing-spring-cloud-starter:0.5.9")
+	implementation ("io.jaegertracing:jaeger-client:1.6.0")
 	// khttp
 	implementation ("com.github.jkcclemens:khttp:0.1.0")
 	// Spring
