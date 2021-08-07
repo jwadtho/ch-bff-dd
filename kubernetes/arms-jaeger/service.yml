@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bff-service
+  name: ch-bff-service
   namespace: {NAMESPACE}
   labels:
-    app: bff
+    app: ch-bff
 spec:
   selector:
-    app: bff
+    app: ch-bff
   ports:
   - port: 9300
     protocol: TCP

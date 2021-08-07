@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bff-deployment
+  name: ch-bff-deployment
   namespace: {NAMESPACE}
   labels:
-    app: bff
+    app: ch-bff
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bff
+      app: ch-bff
   template:
     metadata:
       annotations:
         armsPilotAutoEnable: "on"
         armsPilotCreateAppName: "tootest_ch_bff"
       labels:
-        app: bff
+        app: ch-bff
     spec:
       containers:
-      - name: bff
+      - name: ch-bff
         image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-bff:GITHUB_SHA
         imagePullPolicy: Always
         ports:
@@ -34,4 +34,4 @@ spec:
           - name: aliyun_logs_tootest_ch_bff
             value: stdout
       imagePullSecrets:
-        - name: alibaba-registry-credential-bff
+        - name: alibaba-registry-credential-ch-bff
