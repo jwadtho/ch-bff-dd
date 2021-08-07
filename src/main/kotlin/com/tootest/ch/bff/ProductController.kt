@@ -27,6 +27,7 @@ class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = nul
                     url = endpoint,
                     params = mapOf("email" to email)
                 )
+                logger.info("[ProductInfo] Response from User API: statusCode:${x.statusCode}, text: ${x.text}")
                 if (x.statusCode == 200) {
                     productInfo.backendInfo = "Can connect to backend with email: $email"
                 }
