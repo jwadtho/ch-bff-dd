@@ -7,13 +7,11 @@ logging:
       springframework:
         web: INFO
     root: INFO
-  file:
-    path: /
-    name: ch-bff.log
 
 server:
   port: 9300
-
+  servlet:
+    context-path: /ch-bff
 ch:
   user:
     host: localhost
