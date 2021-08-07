@@ -31,5 +31,7 @@ spec:
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: "jaeger"
+          - name: aliyun_logs_tootest_ch_bff
+            value: stdout
       imagePullSecrets:
         - name: alibaba-registry-credential-bff
