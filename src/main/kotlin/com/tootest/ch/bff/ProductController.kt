@@ -23,10 +23,14 @@ class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = nul
         if (email != ""){
             val endpoint = "http://${chUserHost}:9211/user"
             try {
-                 httpGet(
+                 val x  = httpGet(
                     url = endpoint,
                     params = mapOf("email" to email)
                 )
+                if (x.statusCode == 200) {
+                    productInfo.backendInfo = "Can connect to backend with email: $email"
+                }
+
             } catch (ex: Exception) {
                 logger.error("Could not callout get user, url:$endpoint", ex)
                 throw ex
