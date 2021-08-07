@@ -12,13 +12,7 @@ server:
   port: 9300
   servlet:
     context-path: /ch-bff
-ch:
-  user:
-    host: localhost
-opentracing:
-  spring:
-    web:
-      enabled: false
+
 management:
   health:
     livenessstate:
