@@ -1,18 +1,6 @@
-logging:
-  level:
-    com:
-      tootest:
-        ch: DEBUG
-    org:
-      springframework:
-        web: INFO
-    root: INFO
-  file:
-    path: /
-    name: ch-bff.log
-
-server:
-  port: 9300
+spring:
+  autoconfigure:
+    exclude: io.opentracing.contrib.spring.tracer.configuration.TracerAutoConfiguration
 
 
 ch:
