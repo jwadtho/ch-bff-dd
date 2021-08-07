@@ -1,6 +1,7 @@
 ch:
   user:
-    host: user-service
+#    host: user-service
+    host: user-service.tootest.svc.cluster.local
 
 
 logging:
