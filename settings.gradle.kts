@@ -1,1 +1,1 @@
-rootProject.name = "bff"
+rootProject.name = "bff-dd"

@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-dd-deployment
+  namespace: {NAMESPACE}
+  labels:
+    app: bff-dd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bff-dd
+  template:
+    metadata:
+      labels:
+        app: bff-dd
+    spec:
+      containers:
+      - name: bff-dd
+        image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/tootest/ch-bff-dd:GITHUB_SHA
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 7300
+        volumeMounts:
+          - mountPath: /logs
+            name: log-storage
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "dd"
+          - name: MYSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: db-host
+          - name: SPRING_DATASOURCE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: user-username
+          - name: SPRING_DATASOURCE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysql-secret
+                key: user-password
+          - name: DD_AGENT_HOST
+            value: datadog-service
+      - name: log-collector
+        image: xom-ecomm-acr02-registry.cn-shanghai.cr.aliyuncs.com/bcs/fluentbit_sidecar:2
+        resources:
+          limits:
+            cpu: 200m
+            memory: 2000Mi
+        volumeMounts:
+          - name: log-storage
+            readOnly: true
+            mountPath: /mnt/log
+          - mountPath: /fluent-bit/etc/
+            name: fluentbit-volume
+      imagePullSecrets:
+        - name: alibaba-registry-credential-user
+      volumes:
+        - name: log-storage
+          emptyDir: { }
+        - name: fluentbit-volume
+          configMap:
+            name: ch-bff-dd-fluentbit
