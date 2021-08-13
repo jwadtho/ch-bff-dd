@@ -1,0 +1,11 @@
+server:
+  port: 7300
+
+ch:
+  user:
+    host: user-dd-service
+
+
+logging:
+  pattern:
+    level: 'TOOXX [%X{dd.trace_id}/%X{dd.span_id}] TOOXX'

@@ -57,7 +57,7 @@ spec:
           - mountPath: /fluent-bit/etc/
             name: fluentbit-volume
       imagePullSecrets:
-        - name: alibaba-registry-credential-user
+        - name: alibaba-registry-credential-ch-bff
       volumes:
         - name: log-storage
           emptyDir: { }
