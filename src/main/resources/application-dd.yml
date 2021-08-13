@@ -3,7 +3,7 @@ server:
 
 ch:
   user:
-    host: user-dd-service
+    endpoint: http:user-dd-service:7211/ch-user-dd
 
 
 logging:

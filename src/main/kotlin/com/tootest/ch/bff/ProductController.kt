@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import khttp.get as httpGet
 
 @RestController
-class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = null) {
+class ProductController(@Value("\${ch.user.endpoint}") val chUserEndpoint: String? = null) {
 
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -21,7 +21,7 @@ class ProductController(@Value("\${ch.user.host}") val chUserHost: String? = nul
         logger.info("[ProductInfo] Product Info:{}", productInfo)
 
         if (email != "") {
-            val endpoint = "http://${chUserHost}:9211/ch-user/user"
+            val endpoint = "${chUserEndpoint}/user"
             val x = httpGet(
                 url = endpoint,
                 params = mapOf("email" to email)
