@@ -3,7 +3,9 @@ server:
 
 ch:
   user:
-    endpoint: http://user-dd-service:7211/ch-user-dd
+#     endpoint: http://user-dd-service:7211/ch-user-dd
+    endpoint: http://user-dd-service.svc.cluster.local:7211/ch-user-dd
+    
 
 
 logging:
