@@ -5,50 +5,15 @@
 
 <configuration scan="false" scanPeriod="60 seconds">
 
-    <contextName>logback-spring</contextName>
-
-    <property name="logging.path" value="./logs"/>
-    <property scope="context" name="envName" value="envName"/>
-
-    <springProperty scope="context" name="envName"
-                    source="dd.environment"
-                    defaultValue="tootest"/>
-
-
-    <conversionRule conversionWord="clr"
-                    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <conversionRule conversionWord="wEx"
-                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
-
-    <property name="CONSOLE_LOG_PATTERN"
-              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>debug</level>
-        </filter>
-
-        <encoder>
-            <Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
-
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>${logging.path}/app.log</file>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <includeMdcKeyName>dd.trace_id</includeMdcKeyName>
-            <includeMdcKeyName>dd.span_id</includeMdcKeyName>
+<!--            <includeMdcKeyName>dd.trace_id</includeMdcKeyName>-->
+<!--            <includeMdcKeyName>dd.span_id</includeMdcKeyName>-->
         </encoder>
-
     </appender>
 
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-
     </root>
+
 </configuration>

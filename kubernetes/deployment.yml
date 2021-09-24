@@ -12,8 +12,16 @@ spec:
       app: bff
   template:
     metadata:
+      annotations:
+        k8s.aliyun.com/acr-instance-id: cri-3fynibeigjxpi5o6
+        k8s.oneconnect.xom.cn/datadog-java: 'true'
       labels:
         app: bff
+        tags.datadoghq.com/env: occ-tootest
+        tags.datadoghq.com/occ-service-domain: tootest
+        tags.datadoghq.com/service: bff-dd
+        tags.datadoghq.com/source: java
+        tags.datadoghq.com/version: GITHUB_SHA
     spec:
       containers:
       - name: bff
@@ -25,6 +33,4 @@ spec:
           requests:
             memory: "64Mi"
             cpu: "250m"
-      imagePullSecrets:
-        - name: alibaba-registry-credential-bff
    
