@@ -5,6 +5,9 @@ metadata:
   namespace: {NAMESPACE}
   labels:
     app: bff-dd
+    tags.datadoghq.com/env: occ-tootest
+    tags.datadoghq.com/service: bff-dd
+    tags.datadoghq.com/version: GITHUB_SHA
 spec:
   replicas: 1
   selector:
@@ -18,10 +21,10 @@ spec:
       labels:
         app: bff-dd
         tags.datadoghq.com/env: occ-tootest
-        tags.datadoghq.com/occ-service-domain: tootest
         tags.datadoghq.com/service: bff-dd
-        tags.datadoghq.com/source: java
         tags.datadoghq.com/version: GITHUB_SHA
+        tags.datadoghq.com/source: java
+        tags.datadoghq.com/occ-service-domain: tootest
     spec:
       containers:
         - name: bff-dd
